@@ -76,6 +76,15 @@ def mutation(population, mutation_rate):
         candidate[1] = None
 
 
+# mutate all members of the poupulation randomly excluding the first one(best individual)
+# We just change the order of the permutation by one
+def mutation_all(population, mutation_rate):
+    for individual in population[1:]:
+        if random.uniform(0, 1) <= mutation_rate:
+            swap_rnd(individual[0])
+            individual[1] = None
+
+
 def evolve(population, mutation_rate):
     # Important: the population should be sorted before evolve
 
