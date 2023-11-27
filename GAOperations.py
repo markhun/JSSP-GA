@@ -111,6 +111,4 @@ def evolve(population: list, mutation_rate):
     # we add the new member to the population
     population.insert(len(population) // 2 + 1, baby)
 
-    # #we trigger the mutation for one of the population, depending on the mutation rate
-    mutation(population, mutation_rate)
     return population
