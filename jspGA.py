@@ -44,7 +44,11 @@ def genetic(times, machines, n, population_number, iterations, rate, target):
     ##if we don't define a target we set the number of iterations we want
     if not target:
         for i in range(iterations):
-            population = evolve(population, rate)
+            for _ in range(len(population) // 4):
+                population = evolve(population, rate)
+
+            mutation_all(population, rate)
+
             best_ind, best_result = sortAndGetBestIndividual(population)
             total_fitness, diffPercentage = getFitness(population)
 
