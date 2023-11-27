@@ -90,8 +90,7 @@ def genetic(times, machines, n, population_number, iterations, rate, target):
             checkDiversity(population, diffPercentage, n, machine_number)
 
     best_result, best_table = calculateMakespan(times, machines, global_best_ind[0], n)
-    print("\nOVERALL RESULT")
-    print("RESULT: %s" % best_result)
+    print("BEST RESULT: %s" % best_result)
     print("the elapsed time:%ss" % (int(time.time() - start_time)))
     # print("Permutation: ")
     # print(fromPermutation(global_best_ind[0], n))
