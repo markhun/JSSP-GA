@@ -85,13 +85,15 @@ def mutation_all(population, mutation_rate):
             individual[1] = None
 
 
-def evolve(population, mutation_rate):
+def evolve(population: list, mutation_rate):
     # Important: the population should be sorted before evolve
 
     # We delete the worst individual of the population
     population.pop()
 
     # we choose a mother and father for the new individual
+    # father = random.choice(population[:len(population)//2])
+    # mother = random.choice(population[:len(population)//2])
     father = random.choice(population)
     mother = random.choice(population)
     while mother == father:
@@ -107,8 +109,8 @@ def evolve(population, mutation_rate):
     baby = crossover(father, mother, start_index, end_index)
 
     # we add the new member to the population
-    population.append(baby)
+    population.insert(len(population) // 2 + 1, baby)
 
-    # we trigger the mutation for one of the population, depending on the mutation rate
+    # #we trigger the mutation for one of the population, depending on the mutation rate
     mutation(population, mutation_rate)
     return population
