@@ -2,7 +2,13 @@ import copy
 import time
 import sys
 from .calculateMakespan import calculateMakespan
-from .GAOperations import checkDiversity, generate_population, getFitness, evolve
+from .GAOperations import (
+    checkDiversity,
+    generate_population,
+    getFitness,
+    evolve,
+    mutation_all,
+)
 from .plotResult import plotResult
 from .utils import fromPermutation, printTable
 
