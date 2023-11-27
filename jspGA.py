@@ -41,6 +41,7 @@ def genetic(times, machines, n, population_number, iterations, rate, target):
     population = generate_population(population_number, n, machine_number)
     global_best_ind, global_best = sortAndGetBestIndividual(population)
 
+    best_result_per_iteration = {}
     ##if we don't define a target we set the number of iterations we want
     if not target:
         for i in range(iterations):
@@ -56,8 +57,10 @@ def genetic(times, machines, n, population_number, iterations, rate, target):
                 global_best = best_result
                 global_best_ind = copy.deepcopy(best_ind)
 
+            best_result_per_iteration[i] = best_result
             printProgress(best_result, i, time.time() - start_time)
             checkDiversity(population, diffPercentage, n, machine_number)
+
     else:
         # If we define a target we iterate until the best result reach that target
         i = 0
@@ -84,7 +87,9 @@ def genetic(times, machines, n, population_number, iterations, rate, target):
     print("\nOVERALL RESULT")
     print("RESULT: %s" % best_result)
     print("the elapsed time:%ss" % (int(time.time() - start_time)))
-    print("Permutation: ")
-    print(fromPermutation(global_best_ind[0], n))
-    printTable(best_table)
-    plotResult(best_table, best_result)
+    # print("Permutation: ")
+    # print(fromPermutation(global_best_ind[0], n))
+    # printTable(best_table)
+    # plotResult(best_table, best_result)
+
+    return best_result_per_iteration
