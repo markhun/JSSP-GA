@@ -1,6 +1,6 @@
-
 import random
-from calculateMakespan import calculateMakespan
+from .calculateMakespan import calculateMakespan
+
 
 def readFilePairs(filepath):
     times_done = False
@@ -9,12 +9,12 @@ def readFilePairs(filepath):
 
     with open(filepath) as fp:
         line = fp.readline()
-        n, mn = line.strip().split(' ')
+        n, mn = line.strip().split(" ")
         line = fp.readline()
 
         while line:
-            parse_line = ' '.join(line.split())
-            raw_line = parse_line.strip().split(' ')
+            parse_line = " ".join(line.split())
+            raw_line = parse_line.strip().split(" ")
             curr = []
             i = 0
             machine = []
@@ -31,14 +31,14 @@ def readFilePairs(filepath):
 
     return times, machines, int(n)
 
+
 def readSolution(filepath):
     machines = []
 
     with open(filepath) as fp:
-
         line = fp.readline()
         while line:
-            raw_line = line.strip().split(' ')
+            raw_line = line.strip().split(" ")
             curr = []
             for char in raw_line:
                 if len(char) > 0:
@@ -51,6 +51,7 @@ def readSolution(filepath):
             sequence.append(machines[j][i])
     return sequence
 
+
 def swap_rnd(config):
     id1 = random.choice(range(len(config)))
     id2 = random.choice(range(len(config)))
@@ -59,9 +60,10 @@ def swap_rnd(config):
     config[id2] = tmp
     return config
 
+
 def fromPermutation(permutation, n):
-    return list(map(lambda  x: x%n, permutation))
-    
+    return list(map(lambda x: x % n, permutation))
+
 
 def testPermutation(permutation, times, machines, n):
     best_result, table = calculateMakespan(times, machines, permutation, n)
@@ -73,15 +75,16 @@ def testPermutation(permutation, times, machines, n):
     print("TABLE:")
     i = 1
     for row in table:
-        print("M%s: %s" %(i, row))
+        print("M%s: %s" % (i, row))
         for slot in row:
             job_sequence.append(slot[2])
         i += 1
     print(job_sequence)
 
+
 def printTable(table):
     i = 1
     print("TABLE: ")
     for row in table:
-        print("M%s: %s" %(i, row))
+        print("M%s: %s" % (i, row))
         i += 1
